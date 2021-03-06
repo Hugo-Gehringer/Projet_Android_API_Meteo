@@ -8,7 +8,7 @@ public class City {
     private String longitude;
 
 
-    public City(int id, String name, String longitude , String latitude ) {
+    public City(String name, String longitude , String latitude ) {
         this.id = id;
         this.name = name;
         this.longitude=longitude;
