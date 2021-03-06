@@ -104,7 +104,7 @@ public class WeatherPerCityActivity extends AppCompatActivity {
     public void getWeather(String latitude,String longitude,RequestQueue queue){
 
         String metrics= "&units=metric";
-        String urlWeather = "https://api.openweathermap.org/data/2.5/onecall?lat="+latitude+"&lon="+longitude+"&exclude=minute,hourly,alerts,current"+metrics+apiID;
+        String urlWeather = "https://api.openweathermap.org/data/2.5/onecall?lat="+latitude+"&lon="+longitude+"&exclude=minute,hourly,alerts"+metrics+apiID;
         Log.d(TAG, "url weather : " + urlWeather);
         StringRequest stringRequestWeather = new StringRequest(Request.Method.GET, urlWeather, new Response.Listener<String>() {
 
@@ -131,9 +131,12 @@ public class WeatherPerCityActivity extends AppCompatActivity {
 
                         Log.d(TAG, "dt : " + jour);
 
-                        String tempDay = jsonObject.getJSONObject("temp").getString("day");
+                        int temperatureJ = jsonObject.getJSONObject("temp").getInt("day");
+                        String tempDay = temperatureJ+"°C";
                         Log.d(TAG, "tempJ : " + tempDay);
-                        String tempNight = jsonObject.getJSONObject("temp").getString("night");
+                        int temperatureN = jsonObject.getJSONObject("temp").getInt("night");
+                        String tempNight = temperatureN+"°C";
+
                         Log.d(TAG, "tempNight : " + tempNight);
 
                         Weather weather = new Weather(jour,tempDay,tempNight);
