@@ -23,6 +23,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         EditText editTextCityName=(EditText) findViewById(R.id.inputCitySearch);
+        
+        editTextCityName.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    buttonCity.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
 
         Button buttonCity=(Button) findViewById(R.id.ButtonCitySearch);
         ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(getApplicationContext()).
