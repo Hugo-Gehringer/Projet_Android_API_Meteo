@@ -16,12 +16,12 @@
         android:contentDescription="TODO" />
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="72dp"
         android:layout_height="wrap_content"
-        android:paddingRight="5dp"
         android:layout_weight="1"
-        android:paddingEnd="5dp">
+        android:orientation="vertical"
+        android:paddingEnd="5dp"
+        android:paddingRight="5dp">
 
 
         <TextView
@@ -30,19 +30,20 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:textColor="@color/purple_500"
-            android:textStyle="bold"
-             />
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/weather_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/purple_500" />
+            android:textColor="@color/purple_500"
+            android:textSize="14dp"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="33dp"
+        android:layout_width="27dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
@@ -52,14 +53,14 @@
         <TextView
             android:id="@+id/weather_tempDay"
 
-            android:layout_width="205dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/purple_500"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/weather_tempNight"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:textColor="@color/purple_500"

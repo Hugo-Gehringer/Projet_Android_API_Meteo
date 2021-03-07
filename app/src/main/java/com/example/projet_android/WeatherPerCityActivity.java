@@ -102,8 +102,9 @@ public class WeatherPerCityActivity extends AppCompatActivity {
 
     public void getWeather(String latitude,String longitude,RequestQueue queue){
 
+        String language = "&lang=fr";
         String metrics= "&units=metric";
-        String urlWeather = "https://api.openweathermap.org/data/2.5/onecall?lat="+latitude+"&lon="+longitude+"&exclude=minute,hourly,alerts"+metrics+apiID;
+        String urlWeather = "https://api.openweathermap.org/data/2.5/onecall?lat="+latitude+"&lon="+longitude+"&exclude=minute,hourly,alerts"+metrics+language+apiID;
         Log.d(TAG, "url weather : " + urlWeather);
         StringRequest stringRequestWeather = new StringRequest(Request.Method.GET, urlWeather, new Response.Listener<String>() {
 
