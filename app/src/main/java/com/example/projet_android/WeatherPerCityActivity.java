@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,8 +53,6 @@ public class WeatherPerCityActivity extends AppCompatActivity {
         String urlCity = "https://api.openweathermap.org/data/2.5/weather?";
         String input = getIntent().getExtras().getString(INPUT_PARAMETER);
         String cityRequest = "q=" + input;
-
-
 
 
         urlCity += cityRequest + apiID;
