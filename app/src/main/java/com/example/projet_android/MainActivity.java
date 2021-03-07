@@ -96,14 +96,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, WeatherPerLocation.class);
-                Bundle bundle = new Bundle(2);
+                Bundle bundle = new Bundle(1);
                 bundle.putString(WeatherPerLocation.INPUT_Longitude, String.valueOf(longitude));
                 bundle.putString(WeatherPerLocation.INPUT_Latitude, String.valueOf(latitude));
                 intent.putExtras(bundle);
                 MainActivity.this.startActivity(intent);
-                Log.d(TAG, String.valueOf(latitude));
-                Log.d(TAG, String.valueOf(longitude));
-
             }
         });
 

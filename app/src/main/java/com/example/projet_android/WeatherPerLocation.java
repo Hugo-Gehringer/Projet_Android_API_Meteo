@@ -33,7 +33,7 @@ import java.util.TimeZone;
 public class WeatherPerLocation extends AppCompatActivity {
     private static final String TAG = WeatherPerLocation.class.getSimpleName();
     public static final String INPUT_Longitude = "input_parameter";
-    public static final String INPUT_Latitude = "input_parameter";
+    public static final String INPUT_Latitude = "";
 
     String apiID = "&appid=a34aaab7afe9e436a612254a3cfe4670";
 
@@ -54,6 +54,9 @@ public class WeatherPerLocation extends AppCompatActivity {
         longitude = getIntent().getExtras().getString(INPUT_Longitude);
         latitude = getIntent().getExtras().getString(INPUT_Latitude);
 
+        Log.d(TAG, "Lat : " + latitude);
+        Log.d(TAG, "long : " + longitude);
+
         //List<Game> games = new ArrayList<>();
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -71,6 +74,8 @@ public class WeatherPerLocation extends AppCompatActivity {
 
     public void getWeather(String latitude,String longitude,RequestQueue queue){
 
+        Log.d(TAG, "Lat : " + latitude);
+        Log.d(TAG, "long : " + longitude);
         String language = "&lang=fr";
         String metrics= "&units=metric";
         String urlWeather = "https://api.openweathermap.org/data/2.5/onecall?lat="+latitude+"&lon="+longitude+"&exclude=minute,hourly,alerts"+metrics+language+apiID;
