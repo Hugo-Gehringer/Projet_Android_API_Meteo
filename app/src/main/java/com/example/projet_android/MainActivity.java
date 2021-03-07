@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.projet_android.Tasks.ProjectAsyncTask;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         EditText editTextCityName=(EditText) findViewById(R.id.inputCitySearch);
 
         Button buttonCity=(Button) findViewById(R.id.ButtonCitySearch);
+        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(getApplicationContext()).
+                build();
+        ImageLoader.getInstance().init(configuration);
 
         buttonCity.setOnClickListener(new View.OnClickListener() {
             @Override

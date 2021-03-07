@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.projet_android.adapters.WeatherCityAdapter;
 import com.example.projet_android.model.City;
 import com.example.projet_android.model.Weather;
 
@@ -22,9 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,6 +38,7 @@ public class WeatherPerCityActivity extends AppCompatActivity {
 
     private  String longitude;
     private  String latitude;
+    List<Weather> listeWeather= new ArrayList<Weather>();
 
     public static final int RESULT_OK = 0;
     public static final int RESULT_KO = 1;
@@ -52,7 +53,6 @@ public class WeatherPerCityActivity extends AppCompatActivity {
         String input = getIntent().getExtras().getString(INPUT_PARAMETER);
         String cityRequest = "q=" + input;
 
-        List<City> list= new ArrayList<>();
 
 
 
@@ -139,8 +139,20 @@ public class WeatherPerCityActivity extends AppCompatActivity {
 
                         Log.d(TAG, "tempNight : " + tempNight);
 
-                        Weather weather = new Weather(jour,tempDay,tempNight);
+                        String icon= jsonObject.getJSONArray("weather").getJSONObject(0).getString("icon");
+                        Log.d(TAG, "arraWTH : " + icon);
+
+                        String description= jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
+                        Log.d(TAG, "arraWTH : " + description);
+
+
+                        Weather weather = new Weather(jour,tempDay,tempNight,description,icon);
+                        listeWeather.add(weather);
                     }
+
+                    ListView listview = (ListView) findViewById(R.id.listView);
+                    WeatherCityAdapter weatherCityAdapter = new WeatherCityAdapter(WeatherPerCityActivity.this,listeWeather);
+                    listview.setAdapter(weatherCityAdapter);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
