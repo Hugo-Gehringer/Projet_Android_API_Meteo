@@ -36,5 +36,21 @@
         tools:ignore="MissingConstraints"
         tools:src="@android:drawable/bottom_bar"></Button>
 
+    <Button
+        android:id="@+id/ButtonLocationSearch"
+        android:layout_width="181dp"
+        android:layout_height="104dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="132dp"
+        android:layout_marginLeft="132dp"
+        android:layout_marginTop="384dp"
+        android:hint="Recherche Location"
+        android:visibility="visible"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:src="@android:drawable/bottom_bar"></Button>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

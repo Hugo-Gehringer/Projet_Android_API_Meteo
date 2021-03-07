@@ -1,16 +1,14 @@
 package com.example.projet_android;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,7 +17,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.projet_android.adapters.WeatherCityAdapter;
-import com.example.projet_android.model.City;
 import com.example.projet_android.model.Weather;
 
 import org.json.JSONArray;
@@ -33,9 +30,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class WeatherPerCityActivity extends AppCompatActivity {
-    private static final String TAG = WeatherPerCityActivity.class.getSimpleName();
-    public static final String INPUT_PARAMETER = "input_parameter";
+public class WeatherPerLocation extends AppCompatActivity {
+    private static final String TAG = WeatherPerLocation.class.getSimpleName();
+    public static final String INPUT_Longitude = "input_parameter";
+    public static final String INPUT_Latitude = "input_parameter";
 
     String apiID = "&appid=a34aaab7afe9e436a612254a3cfe4670";
 
@@ -52,12 +50,10 @@ public class WeatherPerCityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weather_per_city);
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String urlCity = "https://api.openweathermap.org/data/2.5/weather?";
-        String input = getIntent().getExtras().getString(INPUT_PARAMETER);
-        String cityRequest = "q=" + input;
 
+        longitude = getIntent().getExtras().getString(INPUT_Longitude);
+        latitude = getIntent().getExtras().getString(INPUT_Latitude);
 
-        urlCity += cityRequest + apiID;
         //List<Game> games = new ArrayList<>();
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -67,36 +63,10 @@ public class WeatherPerCityActivity extends AppCompatActivity {
         if (networkInfo != null && networkInfo.isConnected()) {
             Log.d(TAG, "Connected to internet");
 
-            Log.d(TAG, "URL: " + urlCity);
-            StringRequest stringRequestCity = new StringRequest(Request.Method.GET, urlCity, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    City city;
-
-                    Log.d(TAG, "Response : " + response);
-
-                    try {
-                        JSONObject cityObj = new JSONObject(response);
-                        city = new City(cityObj.getString("name"), cityObj.getJSONObject("coord").getString("lon"), cityObj.getJSONObject("coord").getString("lat"));
-                        Log.d(TAG, city.toString());
-                        longitude = city.getLongitude();
-                        latitude = city.getLatitude();
-                        getWeather(latitude,longitude,queue);
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        Log.e(TAG, "ERROR", e);
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Erreur de requête", Toast.LENGTH_LONG);
-                    toast.show();
-                }
-            });
-            queue.add(stringRequestCity);
+            getWeather(latitude,longitude,queue);
         }
+
+
     }
 
     public void getWeather(String latitude,String longitude,RequestQueue queue){
@@ -150,14 +120,12 @@ public class WeatherPerCityActivity extends AppCompatActivity {
                     }
 
                     ListView listview = (ListView) findViewById(R.id.listView);
-                    WeatherCityAdapter weatherCityAdapter = new WeatherCityAdapter(WeatherPerCityActivity.this,listeWeather);
+                    WeatherCityAdapter weatherCityAdapter = new WeatherCityAdapter(WeatherPerLocation.this,listeWeather);
                     listview.setAdapter(weatherCityAdapter);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ERROR", e);
-                    Intent intent = new Intent(WeatherPerCityActivity.this, MainActivity.class);
-                    WeatherPerCityActivity.this.startActivity(intent);
                 }
             }
         }, new Response.ErrorListener() {
