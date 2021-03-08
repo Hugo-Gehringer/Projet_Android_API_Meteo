@@ -45,6 +45,7 @@ public class WeatherPerCityActivity extends AppCompatActivity {
 
     public static final int RESULT_OK = 0;
     public static final int RESULT_KO = 1;
+
     private static String language;
     private static Locale locale;
 
@@ -56,7 +57,6 @@ public class WeatherPerCityActivity extends AppCompatActivity {
         if (Locale.getDefault().getDisplayLanguage().equals("français")){
              language = "&lang=fr";
              locale = Locale.FRANCE;
-
         }else {
              language = "&lang=en";
              locale = Locale.ENGLISH;
@@ -141,12 +141,11 @@ public class WeatherPerCityActivity extends AppCompatActivity {
 
 
                         Log.d(TAG, "dt : " + jour);
-
                         int temperatureJ = jsonObject.getJSONObject("temp").getInt("day");
-                        String tempDay = temperatureJ+"°C";
+                        String tempDay =getString(R.string.day)+ temperatureJ+"°C";
                         Log.d(TAG, "tempJ : " + tempDay);
                         int temperatureN = jsonObject.getJSONObject("temp").getInt("night");
-                        String tempNight = temperatureN+"°C";
+                        String tempNight = getString(R.string.night)+temperatureN+"°C";
 
                         Log.d(TAG, "tempNight : " + tempNight);
 

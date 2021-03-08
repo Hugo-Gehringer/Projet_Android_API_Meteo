@@ -18,4 +18,6 @@
     <string name="hello_first_fragment">Bonjour premier fragment</string>
     <string name="hello_second_fragment">Bonjour deuxième fragment. Arg: %1$s</string>
     <string name="locationSearch">Rechercher par localisation</string>
+    <string name="day">"Journée : "</string>
+    <string name="night">"Soirée : "</string>
 </resources>

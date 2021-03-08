@@ -44,10 +44,21 @@ public class WeatherPerLocation extends AppCompatActivity {
     public static final int RESULT_OK = 0;
     public static final int RESULT_KO = 1;
 
+    private static String language;
+    private static Locale locale;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_per_city);
+
+        if (Locale.getDefault().getDisplayLanguage().equals("français")){
+            language = "&lang=fr";
+            locale = Locale.FRANCE;
+        }else {
+            language = "&lang=en";
+            locale = Locale.ENGLISH;
+        }
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -70,13 +81,15 @@ public class WeatherPerLocation extends AppCompatActivity {
         }
 
 
+        String string = "https://tile.openweathermap.org/map/temp_new/7/49/3.6.png?&appid=a34aaab7afe9e436a612254a3cfe4670";
+
     }
 
     public void getWeather(String latitude,String longitude,RequestQueue queue){
 
         Log.d(TAG, "Lat : " + latitude);
         Log.d(TAG, "long : " + longitude);
-        String language = "&lang=fr";
+
         String metrics= "&units=metric";
         String urlWeather = "https://api.openweathermap.org/data/2.5/onecall?lat="+latitude+"&lon="+longitude+"&exclude=minute,hourly,alerts"+metrics+language+apiID;
         Log.d(TAG, "url weather : " + urlWeather);
@@ -98,7 +111,7 @@ public class WeatherPerLocation extends AppCompatActivity {
 
                         long unixSeconds= jsonObject.getInt("dt");
                         Date date = new Date(unixSeconds*1000L);
-                        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("EEEE d MMM", Locale.FRANCE);
+                        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("EEEE d MMM", locale);
                         simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC")); // give a timezone reference for formating (see comment at the bottom
                         String jour = simpleDateFormat.format(date);
 
@@ -106,10 +119,10 @@ public class WeatherPerLocation extends AppCompatActivity {
                         Log.d(TAG, "dt : " + jour);
 
                         int temperatureJ = jsonObject.getJSONObject("temp").getInt("day");
-                        String tempDay = temperatureJ+"°C";
+                        String tempDay =getString(R.string.day)+ temperatureJ+"°C";
                         Log.d(TAG, "tempJ : " + tempDay);
                         int temperatureN = jsonObject.getJSONObject("temp").getInt("night");
-                        String tempNight = temperatureN+"°C";
+                        String tempNight = getString(R.string.night)+temperatureN+"°C";
 
                         Log.d(TAG, "tempNight : " + tempNight);
 

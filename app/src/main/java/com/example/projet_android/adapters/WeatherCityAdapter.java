@@ -54,8 +54,8 @@ public class WeatherCityAdapter extends BaseAdapter {
         ImageLoader.getInstance().displayImage(this.weathers.get(position).getIcon(), weatherImage);
 
         weatherDay.setText(this.weathers.get(position).getDay());
-        weatherDayTemp.setText("Journée : " +this.weathers.get(position).getDayTemp());
-        weatherNightTemp.setText("Soirée : "+this.weathers.get(position).getNightTemp());
+        weatherDayTemp.setText(this.weathers.get(position).getDayTemp());
+        weatherNightTemp.setText(this.weathers.get(position).getNightTemp());
         weatherDescription.setText(this.weathers.get(position).getDescription());
 
         return itemView;
