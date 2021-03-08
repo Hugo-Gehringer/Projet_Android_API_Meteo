@@ -45,11 +45,24 @@ public class WeatherPerCityActivity extends AppCompatActivity {
 
     public static final int RESULT_OK = 0;
     public static final int RESULT_KO = 1;
+    private static String language;
+    private static Locale locale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_per_city);
+
+        if (Locale.getDefault().getDisplayLanguage().equals("français")){
+             language = "&lang=fr";
+             locale = Locale.FRANCE;
+
+        }else {
+             language = "&lang=en";
+             locale = Locale.ENGLISH;
+        }
+
+        Locale.getDefault().getDisplayLanguage();
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String urlCity = "https://api.openweathermap.org/data/2.5/weather?";
@@ -101,7 +114,6 @@ public class WeatherPerCityActivity extends AppCompatActivity {
 
     public void getWeather(String latitude,String longitude,RequestQueue queue){
 
-        String language = "&lang=fr";
         String metrics= "&units=metric";
         String urlWeather = "https://api.openweathermap.org/data/2.5/onecall?lat="+latitude+"&lon="+longitude+"&exclude=minute,hourly,alerts"+metrics+language+apiID;
         Log.d(TAG, "url weather : " + urlWeather);
@@ -123,7 +135,7 @@ public class WeatherPerCityActivity extends AppCompatActivity {
 
                         long unixSeconds= jsonObject.getInt("dt");
                         Date date = new Date(unixSeconds*1000L);
-                        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("EEEE d MMM", Locale.FRANCE);
+                        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("EEEE d MMM", locale);
                         simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC")); // give a timezone reference for formating (see comment at the bottom
                         String jour = simpleDateFormat.format(date);
 
