@@ -46,16 +46,16 @@ public class WeatherCityAdapter extends BaseAdapter {
 
         ImageView weatherImage = (ImageView) itemView.findViewById(R.id.weather_icon);
         TextView weatherDay = (TextView) itemView.findViewById(R.id.weather_day);
-        TextView weatherDayTemp = (TextView) itemView.findViewById(R.id.weather_tempDay);
-        TextView weatherNightTemp = (TextView) itemView.findViewById(R.id.weather_tempNight);
+        TextView weatherMaxTemp = (TextView) itemView.findViewById(R.id.weather_tempDay);
+        TextView weatherMinTemp = (TextView) itemView.findViewById(R.id.weather_tempNight);
         TextView weatherDescription = (TextView) itemView.findViewById(R.id.weather_description);
 
          // Get singleton instance
         ImageLoader.getInstance().displayImage(this.weathers.get(position).getIcon(), weatherImage);
 
         weatherDay.setText(this.weathers.get(position).getDay());
-        weatherDayTemp.setText(this.weathers.get(position).getDayTemp());
-        weatherNightTemp.setText(this.weathers.get(position).getNightTemp());
+        weatherMaxTemp.setText(this.weathers.get(position).getMaxTemp());
+        weatherMinTemp.setText(this.weathers.get(position).getMinTemp());
         weatherDescription.setText(this.weathers.get(position).getDescription());
 
         return itemView;

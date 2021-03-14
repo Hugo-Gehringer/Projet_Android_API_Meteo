@@ -118,13 +118,12 @@ public class WeatherPerLocationActivity extends AppCompatActivity {
 
                         Log.d(TAG, "dt : " + jour);
 
-                        int temperatureJ = jsonObject.getJSONObject("temp").getInt("day");
-                        String tempDay =getString(R.string.day)+ temperatureJ+"°C";
-                        Log.d(TAG, "tempJ : " + tempDay);
-                        int temperatureN = jsonObject.getJSONObject("temp").getInt("night");
-                        String tempNight = getString(R.string.night)+temperatureN+"°C";
-
-                        Log.d(TAG, "tempNight : " + tempNight);
+                        int temperatureMax = jsonObject.getJSONObject("temp").getInt("max");
+                        String tempMax =getString(R.string.day)+ temperatureMax+"°C";
+                        Log.d(TAG, "tempJ : " + tempMax);
+                        int temperatureMin = jsonObject.getJSONObject("temp").getInt("min");
+                        String tempMin = getString(R.string.night)+temperatureMin+"°C";
+                        Log.d(TAG, "tempNight : " + tempMin);
 
                         String icon= jsonObject.getJSONArray("weather").getJSONObject(0).getString("icon");
                         Log.d(TAG, "arraWTH : " + icon);
@@ -133,7 +132,7 @@ public class WeatherPerLocationActivity extends AppCompatActivity {
                         Log.d(TAG, "arraWTH : " + description);
 
 
-                        Weather weather = new Weather(jour,tempDay,tempNight,description,icon);
+                        Weather weather = new Weather(jour,tempMax,tempMin,description,icon);
                         listeWeather.add(weather);
                     }
 

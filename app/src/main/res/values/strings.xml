@@ -20,7 +20,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="cityname">City Name</string>
     <string name="locationSearch">Location search</string>
-    <string name="day">"Day : "</string>
-    <string name="night">"Night : "</string>
+    <string name="day">"Max : "</string>
+    <string name="night">"Min : "</string>
     <string name="title_activity_maps">Map</string>
 </resources>

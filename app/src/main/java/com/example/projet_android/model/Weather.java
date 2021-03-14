@@ -4,8 +4,8 @@ public class Weather {
 
     private int id;
     private String day;
-    private String dayTemp;
-    private String nightTemp;
+    private String MaxTemp;
+    private String MinTemp;
     private String description;
     private String icon;
 
@@ -13,8 +13,8 @@ public class Weather {
     public Weather(String day, String dayTemp , String nightTemp, String description , String icon) {
         this.id = id;
         this.day = day;
-        this.dayTemp = dayTemp;
-        this.nightTemp = nightTemp;
+        this.MaxTemp = dayTemp;
+        this.MinTemp = nightTemp;
         this.description = description;
         this.icon = "https://openweathermap.org/img/wn/"+icon+"@2x.png";
 
@@ -37,20 +37,20 @@ public class Weather {
         this.day = day;
     }
 
-    public String getDayTemp() {
-        return dayTemp;
+    public String getMaxTemp() {
+        return MaxTemp;
     }
 
-    public void setDayTemp(String dayTemp) {
-        this.dayTemp = dayTemp;
+    public void setMaxTemp(String maxTemp) {
+        this.MaxTemp = maxTemp;
     }
 
-    public String getNightTemp() {
-        return nightTemp;
+    public String getMinTemp() {
+        return MinTemp;
     }
 
-    public void setNightTemp(String nightTemp) {
-        this.nightTemp = nightTemp;
+    public void setMinTemp(String minTemp) {
+        this.MinTemp = minTemp;
     }
 
     public String getDescription() {
@@ -74,8 +74,8 @@ public class Weather {
         return "Weather{" +
                 "id=" + id +
                 ", day='" + day + '\'' +
-                ", dayTemp='" + dayTemp + '\'' +
-                ", nightTemp='" + nightTemp + '\'' +
+                ", dayTemp='" + MaxTemp + '\'' +
+                ", nightTemp='" + MinTemp + '\'' +
                 ", description='" + description + '\'' +
                 ", icon='" + icon + '\'' +
                 '}';

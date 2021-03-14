@@ -141,10 +141,10 @@ public class WeatherPerCityActivity extends AppCompatActivity {
 
 
                         Log.d(TAG, "dt : " + jour);
-                        int temperatureJ = jsonObject.getJSONObject("temp").getInt("day");
+                        int temperatureJ = jsonObject.getJSONObject("temp").getInt("max");
                         String tempDay =getString(R.string.day)+ temperatureJ+"°C";
                         Log.d(TAG, "tempJ : " + tempDay);
-                        int temperatureN = jsonObject.getJSONObject("temp").getInt("night");
+                        int temperatureN = jsonObject.getJSONObject("temp").getInt("min");
                         String tempNight = getString(R.string.night)+temperatureN+"°C";
 
                         Log.d(TAG, "tempNight : " + tempNight);
