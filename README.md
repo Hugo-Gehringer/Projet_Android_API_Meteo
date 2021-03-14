@@ -1,10 +1,10 @@
- #Projet Android GEHRINGER / ESSABAR
+ # Projet Android GEHRINGER / ESSABAR
  
  
- ##ce projet utilise l'api de météo : https://openweathermap.org/api/one-call-api .
+ ## Ce projet utilise l'api de météo : https://openweathermap.org/api/one-call-api .
  
  
- ###MainActivity:
+ ### MainActivity:
  
  La première activité permet de choisi de quelle manière on veut chercher les relevés météo sur 7 jours avec les températures maximale et minimale.
 
@@ -19,7 +19,7 @@
 ![](srcReadme/MainAct.png)
 
 
-###WeatherPercityActivity:
+### WeatherPercityActivity:
 
 L'activity WeatherPerCityActivity fonctionne en prenant en paramètre le nom de la ville qui à était saisi sur l'activity précédente. 
 
@@ -33,7 +33,7 @@ Cette solution n'est pas forcément la plus logique et nous aurions pu procéder
 ![](srcReadme/meteoList.png)
 
 
-###WeatherPerlocationActivity:
+### WeatherPerlocationActivity:
 
 Cette activity permet de récupérer la météo en fonction de la localisation de l'appareil.
 Elle est très similaire à la précendente la seule différence est que nous profitons d'avoir directement la longitude et latitude de la position pour ne faire qu'une seule requête.
@@ -42,7 +42,7 @@ Le code de cette application est clairement dupliqué de l'activité WeatherPerc
 Sur une application en production il faudrait bien évidement refactor le code pour que les recherches par ville, par localisation et par Maps pointe toute sur la même activity.
 
 
-###MapsActivity:
+### MapsActivity:
 
 La dernière activity de notre application utilise l'api GoogleMaps pour récuper une carte googleMap.
 Avec cette carte on peu placer notre marqueur ou on le veut dans le monde pour.  
