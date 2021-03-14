@@ -22,5 +22,11 @@
     <string name="locationSearch">Location search</string>
     <string name="day">"Max : "</string>
     <string name="night">"Min : "</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps" translatable="false">Map</string>
+    <string name="toast_cityName">Enter a city name</string>
+    <string name="toast_requestError">Error in request</string>
+    <string name="button_CitySearch">Search by City</string>
+    <string name="button_LocationSearch">Search by location</string>
+    <string name="button_MapSearch">Search by Map</string>
+    <string name="button_Search">Search</string>
 </resources>

@@ -12,12 +12,18 @@
     <string name="login_failed">Connexion échouée</string>
     <string name="title_activity_weather_per_city">Météo par ville</string>
     <string name="first_fragment_label">Premier fragment</string>
-    <string name="second_fragment_label">Deixème fragment</string>
+    <string name="second_fragment_label">Deuixème fragment</string>
     <string name="next">Prochain</string>
     <string name="previous">Précedent</string>
     <string name="hello_first_fragment">Bonjour premier fragment</string>
     <string name="hello_second_fragment">Bonjour deuxième fragment. Arg: %1$s</string>
     <string name="locationSearch">Rechercher par localisation</string>
-    <string name="day">"Journée : "</string>
-    <string name="night">"Soirée : "</string>
+    <string name="day">"Max : "</string>
+    <string name="night">"Min : "</string>
+    <string name="toast_cityName">Rentrer un nom de ville</string>
+    <string name="toast_requestError">Erreur de requête</string>
+    <string name="button_CitySearch">Recherche par ville</string>
+    <string name="button_LocationSearch">Recherche par localisation</string>
+    <string name="button_MapSearch">Recherche par Map</string>
+    <string name="button_Search">Rechercher</string>
 </resources>

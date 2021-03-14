@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -27,6 +28,8 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
     private static final int PERMISSION_REQUEST_CODE_LOCATION = 1;
+    public static final int REQUEST_CODE_SECOND_ACTIVITY = 1;
+
 
     private double longitude;
     private double latitude;
@@ -45,13 +48,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         } else {
             processLocation();
         }
-        Log.d(TAG,"language : "+Locale.getDefault().getDisplayLanguage());;
+        Log.d(TAG, "language : " + Locale.getDefault().getDisplayLanguage());
 
-        EditText editTextCityName=(EditText) findViewById(R.id.inputCitySearch);
-
-        Button buttonCity=(Button) findViewById(R.id.ButtonCitySearch);
-        Button buttonLocation=(Button) findViewById(R.id.ButtonLocationSearch);
-        Button buttonMap=(Button) findViewById(R.id.ButtonMap);
+        EditText editTextCityName = (EditText) findViewById(R.id.inputCitySearch);
+        Button buttonCity = (Button) findViewById(R.id.ButtonCitySearch);
+        Button buttonLocation = (Button) findViewById(R.id.ButtonLocationSearch);
+        Button buttonMap = (Button) findViewById(R.id.ButtonMap);
 
         editTextCityName.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -72,13 +74,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             @Override
             public void onClick(View v) {
                 String cityName = editTextCityName.getText().toString();
-                if (cityName.isEmpty()){
-                    Log.d(TAG,"Enter a Name");
-                    Toast toast = Toast.makeText(getApplicationContext(), "Enter a city name", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP|Gravity.LEFT, 0, 0);
+                if (cityName.isEmpty()) {
+                    Log.d(TAG, "Enter a Name");
+                    Toast toast = Toast.makeText(MainActivity.this, R.string.toast_cityName, Toast.LENGTH_LONG);
                     toast.show();
-                }
-                else {
+                } else {
                     Intent intent = new Intent(MainActivity.this, WeatherPerCityActivity.class);
                     Bundle bundle = new Bundle(1);
                     bundle.putString(WeatherPerCityActivity.INPUT_PARAMETER, cityName);
@@ -92,10 +92,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         buttonLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(MainActivity.this, WeatherPerLocationActivity.class);
                 Bundle bundle = new Bundle(1);
-                bundle.putString(WeatherPerLocationActivity.INPUT_Longitude, String.valueOf(longitude));
-                bundle.putString(WeatherPerLocationActivity.INPUT_Latitude, String.valueOf(latitude));
+                bundle.putDouble(WeatherPerLocationActivity.INPUT_Longitude, longitude);
+                bundle.putDouble(WeatherPerLocationActivity.INPUT_Latitude, latitude);
                 intent.putExtras(bundle);
                 MainActivity.this.startActivity(intent);
             }
@@ -112,8 +113,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 MainActivity.this.startActivity(intent);
             }
         });
-
-
     }
 
     public void processLocation() {
@@ -128,28 +127,23 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
     }
 
-
-    protected void tryDisplaylocation(Location location){
-
+    protected void tryDisplaylocation(Location location) {
         longitude = location.getLongitude();
         latitude = location.getLatitude();
-
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (PERMISSION_REQUEST_CODE_LOCATION==requestCode){
+        if (PERMISSION_REQUEST_CODE_LOCATION == requestCode) {
 
-            if (grantResults[0]==PackageManager.PERMISSION_GRANTED){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 processLocation();
-            }
-            else {
+            } else {
 
             }
-        }
-        else {
+        } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
     }
 
 

@@ -106,6 +106,8 @@ public class WeatherPerCityActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Erreur de requête", Toast.LENGTH_LONG);
                     toast.show();
+                    Intent intent = new Intent(WeatherPerCityActivity.this, MainActivity.class);
+                    WeatherPerCityActivity.this.startActivity(intent);
                 }
             });
             queue.add(stringRequestCity);
@@ -139,7 +141,6 @@ public class WeatherPerCityActivity extends AppCompatActivity {
                         simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC")); // give a timezone reference for formating (see comment at the bottom
                         String jour = simpleDateFormat.format(date);
 
-
                         Log.d(TAG, "dt : " + jour);
                         int temperatureJ = jsonObject.getJSONObject("temp").getInt("max");
                         String tempDay =getString(R.string.day)+ temperatureJ+"°C";
@@ -155,7 +156,6 @@ public class WeatherPerCityActivity extends AppCompatActivity {
                         String description= jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
                         Log.d(TAG, "arraWTH : " + description);
 
-
                         Weather weather = new Weather(jour,tempDay,tempNight,description,icon);
                         listeWeather.add(weather);
                     }
@@ -167,6 +167,9 @@ public class WeatherPerCityActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ERROR", e);
+                    Toast toast = Toast.makeText(getApplicationContext(), R.string.toast_requestError, Toast.LENGTH_LONG);
+                    toast.show();
+
                     Intent intent = new Intent(WeatherPerCityActivity.this, MainActivity.class);
                     WeatherPerCityActivity.this.startActivity(intent);
                 }
@@ -174,7 +177,7 @@ public class WeatherPerCityActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Erreur de requête", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), R.string.toast_requestError, Toast.LENGTH_LONG);
                 toast.show();
             }
         });

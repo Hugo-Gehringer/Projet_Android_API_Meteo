@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/blue_main"
             android:textStyle="bold" />
 
         <TextView
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/blue_main"
             android:textSize="14dp"/>
 
     </LinearLayout>
@@ -54,7 +54,7 @@
             android:id="@+id/weather_tempDay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/blue_main"
             android:textStyle="bold" />
 
         <TextView
@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/blue_main"
             android:textStyle="bold" />
 
 

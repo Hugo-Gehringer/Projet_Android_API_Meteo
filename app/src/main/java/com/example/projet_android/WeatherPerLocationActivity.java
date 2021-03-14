@@ -3,6 +3,7 @@ package com.example.projet_android;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -37,8 +38,8 @@ public class WeatherPerLocationActivity extends AppCompatActivity {
 
     String apiID = "&appid=a34aaab7afe9e436a612254a3cfe4670";
 
-    private  String longitude;
-    private  String latitude;
+    private  double longitude;
+    private  double latitude;
     List<Weather> listeWeather= new ArrayList<Weather>();
 
     public static final int RESULT_OK = 0;
@@ -62,8 +63,8 @@ public class WeatherPerLocationActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        longitude = getIntent().getExtras().getString(INPUT_Longitude);
-        latitude = getIntent().getExtras().getString(INPUT_Latitude);
+        longitude = getIntent().getExtras().getDouble(INPUT_Longitude);
+        latitude = getIntent().getExtras().getDouble(INPUT_Latitude);
 
         Log.d(TAG, "Lat : " + latitude);
         Log.d(TAG, "long : " + longitude);
@@ -85,7 +86,7 @@ public class WeatherPerLocationActivity extends AppCompatActivity {
 
     }
 
-    public void getWeather(String latitude,String longitude,RequestQueue queue){
+    public void getWeather(double latitude,double longitude,RequestQueue queue){
 
         Log.d(TAG, "Lat : " + latitude);
         Log.d(TAG, "long : " + longitude);
@@ -143,12 +144,15 @@ public class WeatherPerLocationActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.e(TAG, "ERROR", e);
+
+                    Intent intent = new Intent(WeatherPerLocationActivity.this, MainActivity.class);
+                    WeatherPerLocationActivity.this.startActivity(intent);
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Erreur de requête", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), R.string.toast_requestError, Toast.LENGTH_LONG);
                 toast.show();
             }
         });
