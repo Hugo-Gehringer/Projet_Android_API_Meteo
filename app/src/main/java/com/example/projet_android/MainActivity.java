@@ -7,8 +7,6 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -21,12 +19,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.projet_android.Tasks.ProjectAsyncTask;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import java.io.IOException;
-import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
@@ -56,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         Button buttonCity=(Button) findViewById(R.id.ButtonCitySearch);
         Button buttonLocation=(Button) findViewById(R.id.ButtonLocationSearch);
+        Button buttonMap=(Button) findViewById(R.id.ButtonMap);
 
         editTextCityName.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -96,10 +92,22 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         buttonLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WeatherPerLocation.class);
+                Intent intent = new Intent(MainActivity.this, WeatherPerLocationActivity.class);
                 Bundle bundle = new Bundle(1);
-                bundle.putString(WeatherPerLocation.INPUT_Longitude, String.valueOf(longitude));
-                bundle.putString(WeatherPerLocation.INPUT_Latitude, String.valueOf(latitude));
+                bundle.putString(WeatherPerLocationActivity.INPUT_Longitude, String.valueOf(longitude));
+                bundle.putString(WeatherPerLocationActivity.INPUT_Latitude, String.valueOf(latitude));
+                intent.putExtras(bundle);
+                MainActivity.this.startActivity(intent);
+            }
+        });
+
+        buttonMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                Bundle bundle = new Bundle(1);
+                //bundle.putString(WeatherPerLocationActivity.INPUT_Longitude, String.valueOf(longitude));
+                //bundle.putString(WeatherPerLocationActivity.INPUT_Latitude, String.valueOf(latitude));
                 intent.putExtras(bundle);
                 MainActivity.this.startActivity(intent);
             }

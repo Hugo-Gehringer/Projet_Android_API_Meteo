@@ -30,8 +30,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class WeatherPerLocation extends AppCompatActivity {
-    private static final String TAG = WeatherPerLocation.class.getSimpleName();
+public class WeatherPerLocationActivity extends AppCompatActivity {
+    private static final String TAG = WeatherPerLocationActivity.class.getSimpleName();
     public static final String INPUT_Longitude = "input_parameter";
     public static final String INPUT_Latitude = "";
 
@@ -138,7 +138,7 @@ public class WeatherPerLocation extends AppCompatActivity {
                     }
 
                     ListView listview = (ListView) findViewById(R.id.listView);
-                    WeatherCityAdapter weatherCityAdapter = new WeatherCityAdapter(WeatherPerLocation.this,listeWeather);
+                    WeatherCityAdapter weatherCityAdapter = new WeatherCityAdapter(WeatherPerLocationActivity.this,listeWeather);
                     listview.setAdapter(weatherCityAdapter);
 
                 } catch (JSONException e) {
