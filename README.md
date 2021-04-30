@@ -1,4 +1,4 @@
- # Projet Android GEHRINGER / ESSABAR
+ # Projet Android API météo
  
  
  ## Ce projet utilise l'api de météo : https://openweathermap.org/api/one-call-api .
